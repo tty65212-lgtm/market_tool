@@ -1,0 +1,12 @@
+cd C:\Users\User\Desktop\market_tool
+用哪裏的資料夾（路徑）
+
+streamlit run app.py
+跑當前檔案。
+
+美股
+大盤需要：S&P500、IXIC、DJI、SOX、QQQ、VIX、RSP。
+基本面要：CPI、CORE CPI與預期CPI;PPI、CORE PPI與預期PPI、非農、巴菲特指標、國際原油價格、美元指數、Fed利率與預期（升/降）、Core PCE、失業率、初領失業金、M2、QE / QT。
+債市需要：10年期美債利率、20年期美債利率、30年期美債利率、日債利率、2年期美債利率、債市VIX。
+市場情緒：CNN Fear & Greed、Put/Call Ratio、AAII 散戶情緒、Margin Debt（融資）
+「事件垂直線」
