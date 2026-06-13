@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import math
+import json
+
 from datetime import datetime, time
 from zoneinfo import ZoneInfo
 
@@ -17,7 +19,14 @@ except Exception:  # pragma: no cover
     yf = None
 
 from urllib.parse import quote
+
 st.set_page_config(page_title="美股市場觀察工具", page_icon="📈", layout="wide")
+
+with open("config.json", "r", encoding="utf-8") as f:
+    CONFIG = json.load(f)
+
+ECON_RELEASE = CONFIG["econ_release"]
+ECON_CALENDAR = CONFIG["econ_calendar"]
 
 MARKET_QUOTES = [
     {
@@ -81,13 +90,6 @@ EXPECTATIONS = {
     "PPI": None,
     "非農": None,
     "Fed 利率": None,
-}
-
-ECON_CALENDAR = {
-    "下次 CPI": "2026-05-13",
-    "下次 PPI": "2026-05-15",
-    "下次 非農": "2026-05-02",
-    "下次 Fed 會議": "2026-06-17",
 }
 
 BUFFETT_INDICATOR = {
@@ -275,7 +277,7 @@ def macro_latest_table() -> pd.DataFrame:
 
         rows.append([
     name,
-    f"{latest['date'].year % 100}/{latest['date'].month}",
+    ECON_RELEASE.get(name, latest["date"].strftime("%Y-%m-%d")),
     f"{latest['value']:.2f}" if name == "巴菲特指標" else f"{latest['value']:.2f}",
     f"{prev['value']:.2f}%" if name == "巴菲特指標" else f"{prev['value']:.2f}",
     yoy,
