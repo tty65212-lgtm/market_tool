@@ -9,7 +9,6 @@ from zoneinfo import ZoneInfo
 import base64
 from pathlib import Path
 
-from matplotlib.pylab import size
 import pandas as pd
 import streamlit as st
 
